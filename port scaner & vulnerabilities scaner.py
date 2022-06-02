@@ -1,7 +1,14 @@
+###################################
+##                               ##
+##   Port scanner,               ##
+##   vulnerabilities scanner.    ##
+##   Developer: Aharon chetrit.  ##
+##                               ##
+###################################
 import socket
 from socket import getservbyname, getservbyport
 
-class Scaner_ports():
+class Scanner_ports():
     
     def __init__(self,port,host):
         self.host=host
@@ -11,7 +18,6 @@ class Scaner_ports():
            
         
     def port_scaner(self,host,port):
-        
         try:
             sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
             sock.settimeout(0.5)
@@ -25,14 +31,14 @@ class Scaner_ports():
                 port_name = getservbyport(port)
             except:
                 port_name = ''
-            self.counter=1
             print('{+}'+' port '+port_name+' '+str(port)+" is open! "+service_baner[:-1])
+            self.counter=1
 
         except socket.error:
             pass
 
 
-    def get_host_name(self,name):
+    def get_host_name(self,name): 
         host_by_name=socket.gethostbyname(name)
         return host_by_name
 
@@ -47,7 +53,7 @@ class Scaner_ports():
             self.port_scaner(host,i)
         if self.counter==0:
             print("not found..")
-            self.counter==0
+        self.counter=0
         print('-'*50)
             
 
