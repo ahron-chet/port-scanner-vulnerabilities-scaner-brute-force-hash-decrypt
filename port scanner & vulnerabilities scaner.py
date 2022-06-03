@@ -1,9 +1,7 @@
 ###################################
-##                               ##
 ##   Port scanner,               ##
 ##   vulnerabilities scanner.    ##
 ##   Developer: Aharon chetrit.  ##
-##                               ##
 ###################################
 import socket
 from socket import getservbyname, getservbyport
