@@ -3,12 +3,13 @@
 ##   vulnerabilities scanner.    ##
 ##   Developer: Aharon chetrit.  ##
 ###################################
+
 import socket
 from socket import getservbyname, getservbyport
 
 class Scanner_ports():
     
-    def __init__(self,port,host):
+    def __init__(self,host,port):
         self.host=host
         self.port=port
         self.baners_verision=[]
@@ -88,7 +89,7 @@ class Scanner_ports():
                 start_port=self.port[0]
                 end_port=self.port[-1]
             else:
-                start_port=0
+                start_port=int(self.port)
                 end_port=self.port
             host=self.host.split('-')
             start_ip=host[0]
@@ -104,7 +105,7 @@ class Scanner_ports():
                 start_port=self.port[0]
                 end_port=self.port[-1]
             else:
-                start_port=0
+                start_port=int(self.port)
                 end_port=self.port
                 
             host=self.get_host_name(self.host)
@@ -127,10 +128,23 @@ class Scanner_ports():
         count=0
 
         for i in self.baners_verision:
-            v=i.split(' on host')
+            v=str(i).split(' on host')
             v=v[0]
             if v in vulnerabilities:
                 print(i)
                 count=1
         if count==0:
             print('not found vulnerabilities')
+
+def main():
+    v=str(input("to scan for ports enter 1 for ports and vulnerabilities enter full path of vulnerabilitie list: "))
+    p=input('\n\nTo scan for one target and one port enter ip, port (ex:192.167.1.1, 80)\nto scan range of ports enter ip, start_port-end_port (ex: 192.167.1.1, 0-500)\nto scan multiple targets enter start_ip-end_ip ,port/start_port-end_port (ex:10.0.0.1-10.0.0.6, 0-500:\n')
+    p=p.split(',')
+    if v=='1':
+        Scanner_ports(p[0],p[-1]).scaning_for_ports_open()
+    else:
+        Scanner_ports(p[0],p[-1]).scan_for_vulnerabilities(v)
+
+
+if __name__=='__main__':
+    main()
