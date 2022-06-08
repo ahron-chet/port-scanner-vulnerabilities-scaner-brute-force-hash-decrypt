@@ -1,1 +1,1 @@
-# port-scaner-vulnerabilities-scaner
+# port-scaner-vulnerabilities-scaner + brute force hash decrypt
